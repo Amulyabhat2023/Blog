@@ -1,3 +1,6 @@
+import { db } from "./firebase";
+import { collection, addDoc } from "firebase/firestore";
+
 import { useState, useRef, useEffect, useCallback } from "react";
 
 const BLOGGER_PASS = "020226";
@@ -7,18 +10,29 @@ const STORAGE_KEY = "collegeBlogPosts";
 
 async function loadPosts() {
   try {
-    const result = localStorage.getItem(STORAGE_KEY);
-    return result ? JSON.parse(result) : [];
-  } catch {
+    const querySnapshot = await getDocs(collection(db, "blogs"));
+
+    const posts = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return posts;
+  } catch (error) {
+    console.error("Error loading posts:", error);
     return [];
   }
 }
 
-async function savePosts(posts) {
+async function savePosts(post) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
-  } catch (e) {
-    console.error("Storage error", e);
+    await addDoc(collection(db, "blogs"), {
+      title: post.title,
+      content: post.content,
+      createdAt: new Date(),
+    });
+  } catch (error) {
+    console.error("Error saving post:", error);
   }
 }
 
