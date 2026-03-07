@@ -113,7 +113,7 @@ export default function App() {
         <StarDust />
 
         <header className="landing-nav animate-fade">
-          <div className="brand-mark">? CAMPUS CHRONICLES ?</div>
+          <div className="brand-mark">CAMPUS CHRONICLES</div>
           <div className="nav-actions">
             <button className="btn btn-outline" onClick={() => setMode("viewerLogin")}>
               View Blog
@@ -125,15 +125,14 @@ export default function App() {
         </header>
 
         <section className="landing-hero animate-rise">
-          <p className="hero-kicker">EST. 2024 · A COLLEGE STORY</p>
+          <p className="hero-kicker">Spring 2026</p>
           <h1>
-            Life Between
+            A semester
             <br />
-            the <span>Lectures</span>
+            At <span>UCF</span>
           </h1>
           <p className="hero-description">
-            A visual journal documenting the beautifully chaotic, unforgettable world of college,
-            from late nights to first milestones.
+            A blog page documenting my beautiful and unforgettable journey at the University of Central Florida.
           </p>
           <button className="btn btn-outline hero-cta" onClick={() => setMode("viewerLogin")}>
             Explore The Blog ?
@@ -177,7 +176,7 @@ export default function App() {
               type="password"
               value={pass}
               onChange={(e) => setPass(e.target.value)}
-              placeholder="••••••"
+              placeholder="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
             />
             <button className="access-submit" type="submit">
               {isBlogger ? "LOGIN" : "ENTER"}
